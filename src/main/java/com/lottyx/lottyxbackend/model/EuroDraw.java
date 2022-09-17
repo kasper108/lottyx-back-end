@@ -41,5 +41,4 @@ public class EuroDraw {
 
     @Column(name = "additional_two", nullable = false)
     private byte additionalTwo;
-
 }
