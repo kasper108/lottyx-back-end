@@ -8,18 +8,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "official_euro_jackpot")
+@Table(name = "user_euro_jackpot")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OfficialEuroJackpot {
+public class UserEuroDraw {
+
     @Id
     @Column(name = "id" , unique = true, updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "draw_date", nullable = false , unique = true)
-    private Date dateModified;
 
     @Column(name = "number_one", nullable = false)
     private byte numberOne;
@@ -41,5 +39,8 @@ public class OfficialEuroJackpot {
 
     @Column(name = "additional_two", nullable = false)
     private byte additionalTwo;
+
+    @Column(name = "date_modified", nullable = false)
+    private Date dateModified;
 
 }
