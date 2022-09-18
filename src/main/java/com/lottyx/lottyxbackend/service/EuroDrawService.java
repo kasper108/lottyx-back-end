@@ -2,8 +2,8 @@ package com.lottyx.lottyxbackend.service;
 
 import com.lottyx.lottyxbackend.model.EuroDraw;
 import com.lottyx.lottyxbackend.repository.EuroDrawRepository;
+import exception.DrawNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,5 +26,14 @@ public class EuroDrawService {
 
     public EuroDraw addNewEuroDraw(EuroDraw euroDraw){
         return euroDrawRepository.save(euroDraw);
+    }
+
+    public void deleteEuroDraw(Long id){
+        euroDrawRepository.deleteById(id);
+    }
+
+    public EuroDraw getEuroDraw(Long id){
+        return euroDrawRepository.findById(id).orElseThrow(() -> new DrawNotFoundException
+                ("Draw with ID = " + id + " NOT found i database"));
     }
 }
