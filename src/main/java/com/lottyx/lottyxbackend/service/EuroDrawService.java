@@ -3,6 +3,7 @@ package com.lottyx.lottyxbackend.service;
 import com.lottyx.lottyxbackend.model.EuroDraw;
 import com.lottyx.lottyxbackend.repository.EuroDrawRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,8 +20,11 @@ public class EuroDrawService {
         this.euroDrawRepository = euroDrawRepository;
     }
 
-
     public List<EuroDraw> findAllEuroDraws(){
         return euroDrawRepository.findAll();
+    }
+
+    public EuroDraw addNewEuroDraw(EuroDraw euroDraw){
+        return euroDrawRepository.save(euroDraw);
     }
 }

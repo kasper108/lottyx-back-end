@@ -5,15 +5,12 @@ import com.lottyx.lottyxbackend.service.EuroDrawService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin( allowedHeaders = "*", origins = "*")
 @RequestMapping("/api/v1/")
 public class EuroDrawController {
 
@@ -28,5 +25,11 @@ public class EuroDrawController {
     public ResponseEntity<List<EuroDraw>> getAllEuroDraws(){
         List<EuroDraw> allDraws = euroDrawService.findAllEuroDraws();
         return new ResponseEntity<>(allDraws, HttpStatus.OK);
+    }
+
+    @PostMapping("/euro-draws")
+    public ResponseEntity<EuroDraw> postNewEuroDraw(@RequestBody EuroDraw draw){
+        EuroDraw newDraw = euroDrawService.addNewEuroDraw(draw);
+        return new ResponseEntity<>(newDraw, HttpStatus.OK);
     }
 }

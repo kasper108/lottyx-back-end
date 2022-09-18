@@ -18,7 +18,7 @@ public class EuroDraw {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "draw_date", nullable = false , unique = false)
+    @Column(name = "draw_date", nullable = true , unique = false)
     private Date drawDate;
 
     @Column(name = "number_one", nullable = false)
