@@ -2,7 +2,7 @@ package com.lottyx.lottyxbackend.service;
 
 import com.lottyx.lottyxbackend.model.EuroDraw;
 import com.lottyx.lottyxbackend.repository.EuroDrawRepository;
-import exception.DrawNotFoundException;
+import com.lottyx.lottyxbackend.exception.DrawNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +34,22 @@ public class EuroDrawService {
 
     public EuroDraw getEuroDraw(Long id){
         return euroDrawRepository.findById(id).orElseThrow(() -> new DrawNotFoundException
-                ("Draw with ID = " + id + " NOT found i database"));
+                ("LOTTYX : Draw with ID = " + id + " NOT found i database"));
+    }
+
+    public EuroDraw updateEuroDraw(EuroDraw euroDraw){
+        EuroDraw euroDrawFound = euroDrawRepository.findById(euroDraw.getId()).
+                orElseThrow(() -> new DrawNotFoundException("LOTTYX : Draw with ID = " + euroDraw.getId() + " NOT found i database"));
+
+        euroDrawFound.setDrawDate(euroDraw.getDrawDate());
+        euroDrawFound.setNumberOne(euroDraw.getNumberOne());
+        euroDrawFound.setNumberTwo(euroDraw.getNumberTwo());
+        euroDrawFound.setNumberThree(euroDraw.getNumberThree());
+        euroDrawFound.setNumberFour(euroDraw.getNumberFour());
+        euroDrawFound.setNumberFive(euroDraw.getNumberFive());
+        euroDrawFound.setAdditionalOne(euroDraw.getAdditionalOne());
+        euroDrawFound.setAdditionalTwo(euroDraw.getAdditionalTwo());
+
+        return euroDrawRepository.save(euroDrawFound);
     }
 }

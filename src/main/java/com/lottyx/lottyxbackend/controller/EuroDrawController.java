@@ -21,7 +21,7 @@ public class EuroDrawController {
         this.euroDrawService = euroDrawService;
     }
 
-    @GetMapping("/euro-draws")
+    @GetMapping("/euro-draw")
     public ResponseEntity<List<EuroDraw>> getAllEuroDraws(){
         List<EuroDraw> allDraws = euroDrawService.findAllEuroDraws();
         return new ResponseEntity<>(allDraws, HttpStatus.OK);
@@ -44,4 +44,10 @@ public class EuroDrawController {
         euroDrawService.deleteEuroDraw(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/euro-draw/")
+    public EuroDraw editEuroDraw(@RequestBody EuroDraw euroDraw){
+        return euroDrawService.updateEuroDraw(euroDraw);
+    }
+
 }
