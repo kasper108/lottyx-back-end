@@ -1,6 +1,6 @@
 package com.lottyx.lottyxbackend.service;
 
-import com.lottyx.lottyxbackend.repository.UserRepository;
+import com.lottyx.lottyxbackend.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,11 @@ import javax.transaction.Transactional;
 @Transactional
 public class AddressService {
 
-    @Autowired
-    private UserRepository userRepository;
 
+    private AddressRepository addressRepository;
+
+    @Autowired
+    public AddressService( AddressRepository addressRepository ) {
+        this.addressRepository = addressRepository;
+    }
 }

@@ -22,14 +22,14 @@ public class EuroDrawController {
     }
 
     @GetMapping("/euro-draw")
-    public ResponseEntity<List<EuroDraw>> getAllEuroDraws(){
-        List<EuroDraw> allDraws = euroDrawService.findAllEuroDraws();
+    public ResponseEntity<List<EuroDraw>> findAllEuroDraws(){
+        List<EuroDraw> allDraws = euroDrawService.getAllEuroDraws();
         return new ResponseEntity<>(allDraws, HttpStatus.OK);
     }
 
     @PostMapping("/euro-draw")
-    public ResponseEntity<EuroDraw> postNewEuroDraw(@RequestBody EuroDraw draw){
-        EuroDraw newDraw = euroDrawService.addNewEuroDraw(draw);
+    public ResponseEntity<EuroDraw> addNewEuroDraw(@RequestBody EuroDraw draw){
+        EuroDraw newDraw = euroDrawService.postNewEuroDraw(draw);
         return new ResponseEntity<>(newDraw, HttpStatus.OK);
     }
 
