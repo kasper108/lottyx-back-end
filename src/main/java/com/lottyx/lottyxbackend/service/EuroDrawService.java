@@ -20,11 +20,11 @@ public class EuroDrawService {
         this.euroDrawRepository = euroDrawRepository;
     }
 
-    public List<EuroDraw> findAllEuroDraws(){
+    public List<EuroDraw> getAllEuroDraws(){
         return euroDrawRepository.findAll();
     }
 
-    public EuroDraw addNewEuroDraw(EuroDraw euroDraw){
+    public EuroDraw postNewEuroDraw(EuroDraw euroDraw){
         return euroDrawRepository.save(euroDraw);
     }
 
@@ -34,7 +34,7 @@ public class EuroDrawService {
 
     public EuroDraw getEuroDraw(Long id){
         return euroDrawRepository.findById(id).orElseThrow(() -> new DrawNotFoundException
-                ("LOTTYX : Draw with ID = " + id + " NOT found i database"));
+                ("LOTTYX : Draw with ID = " + id + " NOT found in database"));
     }
 
     public EuroDraw updateEuroDraw(EuroDraw euroDraw){
