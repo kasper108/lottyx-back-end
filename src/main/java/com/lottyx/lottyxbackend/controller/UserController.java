@@ -2,6 +2,7 @@ package com.lottyx.lottyxbackend.controller;
 
 import com.lottyx.lottyxbackend.model.User;
 import com.lottyx.lottyxbackend.service.UserService;
+import com.lottyx.lottyxbackend.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,14 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> findUser( @PathVariable("id") Long id ){
-        User foundedUser = userService.getUser(id);
+    public ResponseEntity<User> findUserById( @PathVariable("id") Long id ){
+        User foundedUser = userService.getUserById(id);
         return new ResponseEntity<>(foundedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<?> removeUser(@PathVariable("id") Long id){
-        userService.deleteUser(id);
+    public ResponseEntity<?> removeUserById(@PathVariable("id") Long id){
+        userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
