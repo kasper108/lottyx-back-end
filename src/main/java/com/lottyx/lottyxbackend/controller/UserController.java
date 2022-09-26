@@ -48,6 +48,6 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<User> addNewUser(@RequestBody User user){
         User newUser = userService.postNewUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.OK);
+        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 }
