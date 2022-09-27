@@ -1,0 +1,2 @@
+INSERT INTO user (id, name, surname, email, password) VALUES (1005, "John", "Doe" , "john@doe.com", "qwerty")
+INSERT INTO user (id, name, surname, email, password) VALUES (1007nmmn, "Linda", "Lavanda" , "linda@lavanda.com", "qwerty2")
