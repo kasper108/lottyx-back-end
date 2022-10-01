@@ -1,7 +1,7 @@
 package com.lottyx.lottyxbackend.controller;
 
 import com.lottyx.lottyxbackend.model.EuroDraw;
-import com.lottyx.lottyxbackend.service.EuroDrawService;
+import com.lottyx.lottyxbackend.service.EuroDrawServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,23 +14,18 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class EuroDrawController {
 
-    private final EuroDrawService euroDrawService;
+    private final EuroDrawServiceImpl euroDrawService;
 
     @Autowired
-    public EuroDrawController( EuroDrawService euroDrawService ) {
+    public EuroDrawController( EuroDrawServiceImpl euroDrawService ) {
         this.euroDrawService = euroDrawService;
     }
 
-    @GetMapping("/euro-draw")
-    public ResponseEntity<List<EuroDraw>> findAllEuroDraws(){
-        List<EuroDraw> allDraws = euroDrawService.getAllEuroDraws();
-        return new ResponseEntity<>(allDraws, HttpStatus.OK);
-    }
 
     @PostMapping("/euro-draw")
     public ResponseEntity<EuroDraw> addNewEuroDraw(@RequestBody EuroDraw draw){
         EuroDraw newDraw = euroDrawService.postNewEuroDraw(draw);
-        return new ResponseEntity<>(newDraw, HttpStatus.OK);
+        return new ResponseEntity<>(newDraw, HttpStatus.CREATED);
     }
 
     @GetMapping("/euro-draw/{id}")
@@ -39,15 +34,21 @@ public class EuroDrawController {
         return new ResponseEntity<>(foundedEuroDraw,HttpStatus.OK);
     }
 
-    @DeleteMapping("/euro-draw/{id}")
-    public ResponseEntity<?> removeEuroDraw(@PathVariable("id") Long id){
-        euroDrawService.deleteEuroDraw(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/euro-draw")
+    public ResponseEntity<List<EuroDraw>> findAllEuroDraws(){
+        List<EuroDraw> allDraws = euroDrawService.getAllEuroDraws();
+        return new ResponseEntity<>(allDraws, HttpStatus.OK);
     }
 
     @PutMapping("/euro-draw/")
     public EuroDraw editEuroDraw(@RequestBody EuroDraw euroDraw){
         return euroDrawService.updateEuroDraw(euroDraw);
+    }
+
+    @DeleteMapping("/euro-draw/{id}")
+    public ResponseEntity<?> removeEuroDraw(@PathVariable("id") Long id){
+        euroDrawService.deleteEuroDraw(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
