@@ -1,20 +1,13 @@
 package com.lottyx.lottyxbackend.service;
 
-import com.lottyx.lottyxbackend.repository.AddressRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.lottyx.lottyxbackend.model.Address;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
-@Service
-@Transactional
-public class AddressService {
-
-
-    private AddressRepository addressRepository;
-
-    @Autowired
-    public AddressService( AddressRepository addressRepository ) {
-        this.addressRepository = addressRepository;
-    }
+public interface AddressService {
+    public Address postNewAddress( Address address);
+    public Address getAddressById(Long id);
+    public List<Address> getAllAddresses();
+    public Address updateAddress(Address address);
+    public void deleteAddressById(Long id);
 }
